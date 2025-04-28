@@ -63,7 +63,7 @@ jobs:
         run: |
           echo "Running control plane preparation"
           cd ${SAP_AUTOMATION_REPO_PATH}
-          bash ./sap-automation/deploy/scripts/pipeline_scripts/v2/01-control-plane-prepare.sh
+          bash deploy/scripts/pipeline_scripts/v2/01-control-plane-prepare.sh
         env:
           CONTROL_PLANE_NAME: ${{ inputs.control_plane_name }}
           DEPLOYER_TFSTATE_KEY: "${{ inputs.control_plane_name }}-INFRASTRUCTURE.terraform.tfstate"
