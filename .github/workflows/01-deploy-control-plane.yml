@@ -84,6 +84,11 @@ jobs:
           LIBRARY_TFVARS_FILENAME: ${{ inputs.library }}.tfvars
           FORCE_RESET: ${{ inputs.force_reset }}
           IS_PIPELINE_DEPLOYMENT: true
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          WEB_APP_CLIENT_SECRET: ${{ secrets.WEB_APP_CLIENT_SECRET }}
           TF_VAR_agent_pool: 'Default'
           TF_VAR_ansible_core_version: ${{ env.ANSIBLE_CORE_VERSION }}
           TF_VAR_tf_version: ${{ env.TF_VERSION }}
