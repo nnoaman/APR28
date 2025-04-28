@@ -19,6 +19,10 @@ on:
         required: false
         type: boolean
         default: false
+permissions:
+  contents: write
+  id-token: write
+  issues: write
 
 env:
   TF_IN_AUTOMATION: true
