@@ -8,6 +8,12 @@ on:
         description: 'Control Plane Name, use the following syntax: ENV-LOCA-VNET'
         required: true
         type: environment
+      library:
+        default: MGMT-NOEU-SAP_LIBRARY
+        description: "Select the SAP Library to deploy"
+        type: choice
+        options:
+          - APR25-WEEU-SAP_LIBRARY
       force_reset:
         description: 'Force a re-install - may require multiple re-runs'
         required: false
@@ -66,7 +72,11 @@ jobs:
           bash deploy/scripts/pipeline_scripts/v2/01-control-plane-prepare.sh
         env:
           CONTROL_PLANE_NAME: ${{ inputs.control_plane_name }}
+          DEPLOYER_FOLDERNAME: "${{ inputs.control_plane_name }}-INFRASTRUCTURE"
+          DEPLOYER_TFVARS_FILENAME: "${{ inputs.control_plane_name }}-INFRASTRUCTURE.tfvars"
           DEPLOYER_TFSTATE_KEY: "${{ inputs.control_plane_name }}-INFRASTRUCTURE.terraform.tfstate"
+          LIBRARY_FOLDERNAME: ${{ inputs.library }}
+          LIBRARY_TFVARS_FILENAME: ${{ inputs.library }}.tfvars
           FORCE_RESET: ${{ inputs.force_reset }}
           IS_PIPELINE_DEPLOYMENT: true
           TF_VAR_agent_pool: 'Default'
