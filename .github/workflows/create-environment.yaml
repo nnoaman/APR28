@@ -56,7 +56,7 @@ jobs:
           echo region_map: $region_map
           echo region: $region
 
-          deployer_name=${environment}-${region_map}-${deployer_vnet}-INFRASTRUCTURE
+          deployer_name=${environment}-${region_map}-${deployer_vnet}
           library_name=${environment}-${region_map}-SAP_LIBRARY
 
           url_to_call=/repos/${{ github.repository }}/environments/${deployer_name^^}
