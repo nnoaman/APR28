@@ -95,14 +95,18 @@ jobs:
 
   populate-keyvault:
     name: Save Deployment Credentials in Azure Keyvault
+    environment: ${{ inputs.control_plane_name }}
     needs: prepare-deployer
     runs-on: ${{ needs.prepare-deployer.outputs.this_agent || 'ubuntu-latest' }}
+    container:
+      image: ghcr.io/nnoaman/sap-automation:github-actions-v2
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout the code
         uses: actions/checkout@v4
         with:
-          path: sap-automation
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Azure Login with Service Principal
         if: ${{ vars.USE_MSI != 'true' }}
@@ -113,7 +117,8 @@ jobs:
       - name: Parameter Validation
         id: parameter_validation
         run: |
-          bash ./sap-automation/deploy/scripts/pipeline_scripts/v2/00-store-secrets-in-keyvault.sh
+          cd ${SAP_AUTOMATION_REPO_PATH}
+          bash deploy/scripts/pipeline_scripts/v2/00-store-secrets-in-keyvault.sh
         env:
           CONTROL_PLANE_NAME: ${{ inputs.control_plane_name }}
           DEPLOYER_KEYVAULT: ${{ needs.prepare-deployer.outputs.deployer_keyvault }}
