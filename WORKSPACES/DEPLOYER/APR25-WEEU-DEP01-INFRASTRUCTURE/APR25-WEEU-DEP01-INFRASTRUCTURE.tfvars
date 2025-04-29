@@ -1,3 +1,26 @@
+##########################################################################################
+#                                                                                        #
+# This sample defines an standard control plane deployment with                          #
+#      1 Deployer (deployer_count = 1)                                                   #
+#      Azure Firewall (firewall_deployment = true)                                       #
+#      Azure Bastion (bastion_deployment = true)                                         #
+#      Azure Web App (use_webapp = false)                                                #
+#                                                                                        #
+##########################################################################################
+
+# The automation supports both creating resources (greenfield) or using existing resources (brownfield)
+# For the greenfield scenario the automation defines default names for resources,
+# if there is a XXXXname variable then the name is customizable
+# for the brownfield scenario the Azure resource identifiers for the resources must be specified
+
+#########################################################################################
+#                                                                                       #
+#  Environment definitioms                                                              #
+#                                                                                       #
+#########################################################################################
+environment = "APR25"
+# The location/region value is a mandatory field, it is used to control where the resources are deployed
+location = "westeurope"
 
 # RESOURCE GROUP
 # The two resource group name and arm_id can be used to control the naming and the creation of the resource group
