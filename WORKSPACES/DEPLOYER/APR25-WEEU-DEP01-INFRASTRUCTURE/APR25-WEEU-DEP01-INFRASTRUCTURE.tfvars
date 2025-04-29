@@ -56,7 +56,7 @@ tags = {
 
 
 #management_network_name=""
-management_network_logical_name = "MGT01"
+management_network_logical_name = "DEP01"
 #management_network_arm_id=""
 management_network_address_space = "10.177.20.0/24"
 
